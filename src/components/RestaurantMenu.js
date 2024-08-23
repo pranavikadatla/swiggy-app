@@ -1,21 +1,12 @@
-import {useState,useEffect} from "react";
+import useRestautrantMenu from "../utils/useRestaurantMenu";
+import RestaurantCateogry from "./RestaurantCateogry";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
+import { useState } from "react";
 const RestaurantMenu=()=>{
-    useEffect(()=>{
-      fetchMenu()
-    },[])
-    const[resInfo,setResInfo]=useState(null);
-    const {resId}=useParams();
-    console.log(resId);
-    const fetchMenu=async()=>{
-       const data= await fetch (MENU_API+resId) ; 
-       console.log(data);
-       const json= await data.json();
-       console.log(json);
-       setResInfo(json.data)
-    };
+   const {resId}=useParams();
+   const resInfo=useRestautrantMenu(resId);
+   const[showIndex,setShowIndex]=useState(null);
     if(resInfo===null){
         return <Shimmer/>
     }
@@ -27,24 +18,28 @@ const RestaurantMenu=()=>{
         costForTwoMessage = '', 
         sla={}
       } = resInfo?.cards?.[2]?.card?.card?.info || {};
-    console.log(resInfo?.cards[2]?.card?.card?.info);
     const {itemCards}=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card||{};
-    console.log(itemCards);
+    const categories=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>
+    { const cardType=c.card?.card?.["@type"];
+       if (cardType=== "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"||
+             cardType=== "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"){
+                return  cardType;
+             }
+    })
     return (
-        <div>
-            <h1>{name}</h1>
-            <p>{cuisines.join(",")}</p>
-            <p>{costForTwoMessage}</p>
-            <p>{avgRating}{" " }stars</p>
-            <p>{sla.deliveryTime}{" " }mins</p>
-            <h2>MENU</h2>
-            <ul>
-              {itemCards&&itemCards.map((item)=>(
-              <li key={item.card.info.id}>
-                {item.card.info.name}-Rs.{item.card.info.price/100}</li>))} 
-            </ul>
-
-        </div>
+        <div className="text-center">
+            <h1 className="font-bold text-3xl my-3">{name}</h1>
+            <p className="font-bold text-lg font-red">{cuisines.join(",")}</p>
+            {/* <p>{costForTwoMessage}</p>
+            <p> {avgRating}{" " }stars</p>
+            <p>{sla.deliveryTime}{" " }mins</p> */}
+            {categories.map((category,index)=> 
+                 <RestaurantCateogry  key={category?.card?.card?.title}
+                  data={category?.card?.card}
+                  showItems={index===showIndex? true:false}
+                  setShowIndex={()=>setShowIndex(index)}/>
+                  )}
+        </div> 
     )
 }
 export default RestaurantMenu;

@@ -3,14 +3,24 @@ const RestaurantCard=(props)=>{
     const {resData}=props
     const {cloudinaryImageId,name,cuisines,avgRating,sla,costForTwo}=resData?.info
     return(
-        <div className="restaurant-card">
-            <img className="resto-img"src={CDN_URL+cloudinaryImageId} alt="biryani"/>
-         <h3>{name}</h3>
-         <p>{cuisines.join(",")}</p>
-         <p>{avgRating} stars</p>
-         <p>{costForTwo}</p>
-         <p>{sla?.deliveryTime} minutes</p>
+        <div className="w-[300px] h-[400px] my-3 mx-2 bg-gray-100 rounded-md "> 
+            <img className="w-[300px] h-[200px] p-1 rounded-lg"src={CDN_URL+cloudinaryImageId}/>
+         <h3 className="m-2 my-0 font-bold">{name}</h3>
+         <p className="m-2 font-normal">{cuisines.join(",")}</p>
+         <p className="m-2 font-normal">{avgRating} stars</p>
+         <p className="m-2 font-normal">{costForTwo}</p>
+         <p className="m-2 font-normal">{sla?.deliveryTime} minutes</p>
         </div>
     )
+}
+export const promotedWithLabel=()=>{
+    return ()=>{
+        return(
+            <div>
+                <label>Promoted</label>
+                <RestaurantCard/>
+            </div>
+        )
+    }
 }
 export default RestaurantCard;
