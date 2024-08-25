@@ -13,8 +13,16 @@ const Body=()=>{
   async function fetchData(){
     const data =await fetch ("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.537122&lng=73.6771662&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const json=await data.json();
-    setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilterRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants) 
+    console.log(json);
+    const dataItems=json?.data?.cards
+    for(let i=0;i<dataItems.length;i++){
+      if(dataItems[i].card.card["@type"]==="type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget"){
+        setListOfRestaurants(dataItems[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilterRestaurants(dataItems[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      }
+    }
+    // setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // setFilterRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants) 
   }
   const {loggedInUser,setUserName}=useContext(UserContext); 
     return listOfRestaurants?.length===0 ? <Shimmer/> : (
