@@ -11,11 +11,11 @@ const Body=()=>{
     fetchData();
   },[])
   async function fetchData(){
-    const data =await fetch ("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.537122&lng=73.6771662&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data =await fetch ("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.537122&lng=73.6771662&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const json=await data.json();
     console.log(json);
     const dataItems=json?.data?.cards
-    for(let i=0;i<dataItems.length;i++){
+    for(let i=0;i<dataItems?.length;i++){
       if(dataItems[i].card.card["@type"]==="type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget"){
         setListOfRestaurants(dataItems[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilterRestaurants(dataItems[i]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -45,10 +45,10 @@ const Body=()=>{
                   console.log("clicked");
                 setFilterRestaurants(filterList);
            }}>Top Rated Restaurants</button>
-           <input className="border-black p-2"
+           {/* <input className="border-black p-2"
            value={loggedInUser} 
         onChange={(e)=> {setUserName(e.target.value)}}
-          /> 
+          />  */}
         </div>
          <div className="flex justify-between flex-wrap text-warp  break-words">
             { filterRestaurants&&filterRestaurants.map((restaurant)=>(

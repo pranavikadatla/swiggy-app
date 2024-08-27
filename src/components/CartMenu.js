@@ -1,14 +1,13 @@
 import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
-import { addItem } from "../utils/cartSlice";
+import { removeItem } from "../utils/cartSlice";
 
 const CartMenu = ({ items}) => {
   console.log(items);
-  
-    // const dispatch=useDispatch();
-    // const handleAddClick=(item)=>{
-    //    dispatch(addItem(item));
-    // }
+      const dispatch=useDispatch();
+      const handleRemoveItem=(item)=>{
+       dispatch(removeItem(item));
+      }
 
   return(
    <div>
@@ -24,8 +23,8 @@ const CartMenu = ({ items}) => {
                <div className="absolute text-center"> 
                  <button 
                  className="bg-white shadow-md rounded px-2 py-1  text-green-800  mt-24 ml-14"
-                  onClick={()=>handleAddClick(item)}>
-                    ADD +</button>
+                  onClick={()=>handleRemoveItem(item)}>
+                    Remove +</button>
              </div>
              <img className="w-[180px] h-[120px] rounded-lg mb-3 " src={CDN_URL+item?.card?.info?.imageId}/>
          </div>

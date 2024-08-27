@@ -15,10 +15,10 @@ const Header=()=>{
             </div> 
             <div className="flex justify-between m-4 p-4 text-lg text-black"> 
              <p className="mx-3 font-bold text-xl"><Link to="/">Home</Link></p>
-             <p className="mx-3 font-bold text-xl"><Link to="/about">About Us</Link></p>
-             <p className="mx-3 font-bold text-xl"><Link to="/contact">Contact us</Link></p>
-             <p className="mx-3 font-bold text-xl"><Link to="/cart">Cart-( {cartItems.length}items)</Link></p>
-             <p className="mx-3 font-bold text-xl">{loggedInUser}</p>
+             {/* <p className="mx-3 font-bold text-xl"><Link to="/about">About Us</Link></p>
+             <p className="mx-3 font-bold text-xl"><Link to="/contact">Contact us</Link></p> */}
+             <p className="mx-3 font-bold text-xl"><Link to="/cart">Cart({cartItems.length})</Link></p>
+             {/* <p className="mx-3 font-bold text-xl">{loggedInUser}</p> */}
              <button className="mx-3 font-bold" onClick={()=>{
               btnName==="Login"?setBtnName("Logout"):setBtnName("Login");
              }}>{btnName}</button>
