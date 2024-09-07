@@ -11,8 +11,8 @@ const Body=()=>{
     fetchData();
   },[])
   async function fetchData(){
-    // const data =await fetch ("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.537122&lng=73.6771662&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-    const data =await fetch ("https://corsproxy-la3g.onrender.com/full/?url=https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const data =await fetch ("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    // const data =await fetch ("https://corsproxy-la3g.onrender.com/full/?url=https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const json=await data.json();
     //https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
     console.log(json);
