@@ -3,6 +3,7 @@ import {useEffect, useState,useContext} from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import UserContext from "./UserContext";
+import swiggyData from "../data.json";
 const Body=()=>{
   const [listOfRestaurants,setListOfRestaurants]=useState([]);
   const[filterRestaurants,setFilterRestaurants]=useState([]);
@@ -10,10 +11,11 @@ const Body=()=>{
   useEffect(()=>{
     fetchData();
   },[])
-  async function fetchData(){
-    const data =await fetch ("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+  function fetchData(){
+    // const data=swiggyData
+    // const data =await fetch ("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     // const data =await fetch ("https://corsproxy-la3g.onrender.com/full/?url=https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-    const json=await data.json();
+    const json=swiggyData;
     //https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5209639&lng=73.7786898&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
     console.log(json);
     const dataItems=json?.data?.cards
