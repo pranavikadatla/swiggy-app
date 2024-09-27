@@ -6,6 +6,7 @@ import { useState } from "react";
 const RestaurantMenu=()=>{
    const {resId}=useParams();
    const resInfo=useRestautrantMenu(resId);
+   console.log(resInfo);
    const[showIndex,setShowIndex]=useState(null);
     if(resInfo===null){
         return <Shimmer/>
@@ -17,14 +18,14 @@ const RestaurantMenu=()=>{
         avgRating = 0, 
         costForTwoMessage = '', 
         sla={}
-      } = resInfo?.cards?.[2]?.card?.card?.info || {};
-    const {itemCards}=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card||{};
-    const categories=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>
-    { const cardType=c.card?.card?.["@type"];
+      } = resInfo[0] || {};
+    //const {itemCards}=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card||{};
+     const categories=resInfo[0]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>
+     { const cardType=c.card?.card?.["@type"];
        if (cardType=== "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"||
-             cardType=== "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"){
-                return  cardType;
-             }
+            cardType=== "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"){
+               return  cardType;
+            }
     })
     return (
         <div className="text-center">
@@ -34,11 +35,11 @@ const RestaurantMenu=()=>{
             <p> {avgRating}{" " }stars</p>
             <p>{sla.deliveryTime}{" " }mins</p> */}
             {categories.map((category,index)=> 
-                 <RestaurantCateogry  key={category?.card?.card?.title}
-                  data={category?.card?.card}
+                <RestaurantCateogry  key={category?.card?.card?.title}
+                 data={category?.card?.card}
                   showItems={index===showIndex? true:false}
-                  setShowIndex={()=>setShowIndex(index)}/>
-                  )}
+                 setShowIndex={()=>setShowIndex(index)}/>
+                 )}
         </div> 
     )
 }

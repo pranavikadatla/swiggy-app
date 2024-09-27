@@ -19,9 +19,9 @@ const Header=()=>{
              <p className="mx-3 font-bold text-xl"><Link to="/contact">Contact us</Link></p> */}
              <p className="mx-3 font-bold text-xl"><Link to="/cart">Cart({cartItems.length})</Link></p>
              {/* <p className="mx-3 font-bold text-xl">{loggedInUser}</p> */}
-             <button className="mx-3 font-bold" onClick={()=>{
+             {/* <button className="mx-3 font-bold" onClick={()=>{
               btnName==="Login"?setBtnName("Logout"):setBtnName("Login");
-             }}>{btnName}</button>
+             }}>{btnName}</button> */}
             </div>
         </div>
         <hr />
