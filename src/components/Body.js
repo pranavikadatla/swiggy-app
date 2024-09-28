@@ -28,24 +28,33 @@ const Body=()=>{
     // setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     // setFilterRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants) 
   }
-  const {loggedInUser,setUserName}=useContext(UserContext); 
+  //const {loggedInUser,setUserName}=useContext(UserContext); 
+     function handleSearch(e){
+    setSearch(e.target.value);
+    let value=e.target.value;
+     if(value===""){
+      setFilterRestaurants(listOfRestaurants);
+     }
+     else{
+     let filteredRestaurants=listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(search.toLowerCase()));
+                 setFilterRestaurants(filteredRestaurants);
+   }
+  }
     return listOfRestaurants?.length===0 ? <Shimmer/> : (
-      <div className="mx-5 ">
+      <div className="mx-6 ">
         <div className="flex my-6 ">
-             <div className="border-2 rounded-lg  w-[50%] flex">
-               <input className="w-[100%] py-2 px-2 ml-2 rounded-lg "type="text" value={search} placeholder="Search"
-                 onChange={(e)=>{
-                 setSearch(e.target.value)
-              }}/>
-              <div className="" onClick={()=>{
+             <div className="border-1 rounded-lg  w-[70%] flex mx-2 py-1">
+               <input className="w-[100%] py-3 px-2 ml-2 rounded-lg bg-gray-200  text-white border-hidden"type="text" value={search} placeholder="Search"
+                 onChange={(e)=>{handleSearch(e)}}/>
+              {/* <div className="" onClick={()=>{
                  const filteredRestaurants=listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(search.toLowerCase()));
                  setFilterRestaurants(filteredRestaurants);
                   }}>
                  <img className=" w-[50] "src="https://media.istockphoto.com/id/924437708/vector/magnifying-glass-icon.jpg?s=612x612&w=0&k=20&c=VXDoaQ6Ns61N2v6CsMXX-vYlG5oUY3ufoUncvUp1zNY=" />
-             </div>
+             </div> */}
            </div>
            <button className=" mx-4 p-2 bg-green-700 text-white rounded-md" onClick={()=>{
-                const filterList=listOfRestaurants.filter((res)=>res.info.avgRating>4.5);
+                const filterList=listOfRestaurants.filter((res)=>res.info.avgRating>=4.3);
                   console.log("clicked");
                 setFilterRestaurants(filterList);
            }}>Top Rated Restaurants</button>

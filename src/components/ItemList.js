@@ -16,7 +16,7 @@ const ItemList = ({ data}) => {
            className= "p-2 m-2 border-gray-300 border-b-2 text-left flex justify-between">
           <div className="font-medium w-8/12 ">
                <p>{item?.card?.info?.name}</p>
-               <p>₹{item?.card?.info?.price/100}</p>
+               <p>₹{item?.card?.info?.price ? item?.card?.info?.price/100:500}</p>
                <p className="text-sm font-light">{item?.card?.info?.description}</p>
           </div>
           < div>

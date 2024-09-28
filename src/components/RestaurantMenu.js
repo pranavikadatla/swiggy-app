@@ -29,7 +29,7 @@ const RestaurantMenu=()=>{
     })
     return (
         <div className="text-center">
-            <h1 className="font-bold text-3xl my-3">{name}</h1>
+            <h1 className="font-bold text-3xl text-blue-800 my-3">MENU</h1>
             <p className="font-bold text-lg font-red">{cuisines.join(",")}</p>
             {/* <p>{costForTwoMessage}</p>
             <p> {avgRating}{" " }stars</p>
@@ -37,8 +37,10 @@ const RestaurantMenu=()=>{
             {categories.map((category,index)=> 
                 <RestaurantCateogry  key={category?.card?.card?.title}
                  data={category?.card?.card}
-                  showItems={index===showIndex? true:false}
-                 setShowIndex={()=>setShowIndex(index)}/>
+                //   showItems={index===showIndex? true:false}
+            
+                //  setShowIndex={()=>setShowIndex(index)}
+                />
                  )}
         </div> 
     )

@@ -1153,7 +1153,6 @@
                         "cuisines": [
                           "Burgers",
                           "Beverages",
-                          "Cafe",
                           "Desserts"
                         ],
                         "avgRating": 4.5,
@@ -4539,9 +4538,9 @@
                           "Indian",
                           "Continental",
                           "Juices",
-                          "South Indian",
+                      
                           "Italian",
-                          "North Indian",
+                    
                           "Chinese",
                           "Biryani"
                         ],
@@ -5010,7 +5009,7 @@
                         "costForTwo": "₹350 for two",
                         "cuisines": [
                           "Healthy Food",
-                          "Salads",
+                        
                           "Snacks",
                           "Desserts",
                           "Beverages"
